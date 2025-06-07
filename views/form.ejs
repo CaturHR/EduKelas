@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulir Pendaftaran Kelas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384..." crossorigin="anonymous">
+</head>
+<body class="bg-light">
+    <%- include('partials/header') %>
+<div class="container mt-5">
+    <div class="card p-4">
+        <h2>Formulir Pendaftaran Kelas</h2>
+        <form action="/form/submit" method="POST">
+            <div class="row">
+                <div class="col">
+                    <label>Nama Depan</label>
+                    <input type="text" name="namaDepan" class="form-control" required>
+                </div>
+                <div class="col">
+                    <label>Nama Belakang</label>
+                    <input type="text" name="namaBelakang" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="col">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" max="<?= date('Y-m-d') ?>" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Jenis Kelamin</label>
+                    <select class="form-control" name="jenisKelamin" required>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <label>Alamat</label>
+                <input type="text" name="alamat" class="form-control" placeholder="Alamat Jalan">
+                <div class="row mt-2">
+                    <div class="col"><input type="text" name="kota" class="form-control" placeholder="Kota" required></div>
+                    <div class="col"><input type="text" name="provinsi" class="form-control" placeholder="Provinsi" required></div>
+                </div>
+                <input type="text" name="kodePos" class="form-control mt-2" placeholder="Kode Pos">
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <label>Email Siswa</label>
+                    <input type="email" name="email" class="form-control" placeholder="contoh@contoh.com" required>
+                </div>
+                <div class="col">
+                    <label>Nomor Ponsel</label>
+                    <input type="text" name="hp" class="form-control" placeholder="(000) 000-0000" required>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <label>Nama Sekolah / Universitas</label>
+                <input type="text" name="sekolah" class="form-control" required>
+            </div>
+
+            <div class="mt-3">
+                <label>Kursus</label>
+                <select class="form-control" name="kursus" required>
+                    <% kelas.forEach(k => { %>
+                        <option value="<%= k.id %>"><%= k.nama_kelas %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="mt-3">
+                <label>Komentar Tambahan</label>
+                <textarea class="form-control" name="komentar"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success mt-4">Submit</button>
+        </form>
+    </div>
+</div>
+<%- include('partials/footer') %>
+</body>
+</html>
