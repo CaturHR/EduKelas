@@ -50,11 +50,11 @@ router.get('/dashboard', isAuthenticated, (req, res) => {
 });
 
 // tambah kelas
-router.get('/tambah', isAuthenticated, (req, res) => {
+router.get('/kelas/tambah', isAuthenticated, (req, res) => {
     res.render('admin/kelas_add');
 });
 
-router.post('/tambah', isAuthenticated, (req, res) => {
+router.post('/kelas/tambah', isAuthenticated, (req, res) => {
     const { nama_kelas, deskripsi, gambar } = req.body;
     db.query(
         'INSERT INTO kelas (nama_kelas, deskripsi, gambar) VALUES (?, ?, ?)',
@@ -65,7 +65,6 @@ router.post('/tambah', isAuthenticated, (req, res) => {
         }
     );
 });
-
 
 // edit kelas
 router.get('/edit/:id', (req, res) => {
